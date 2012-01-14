@@ -1,0 +1,143 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title></title>
+  <style type="text/css" media="screen, print, projection">
+    body {
+      direction: ltr;
+      margin: 0;
+      padding: 0;
+      color: #000;
+      background: #fff;
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+      font-size: 11px;
+      line-height: 1.28;
+      text-align: left;
+    }
+    #wrap {
+      width: 750px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #999999;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+    h2 {
+      color: #999999;
+      font-size: 11px;
+      font-weight: bold;
+      margin: 0;
+    }
+    #header {
+      padding: 5px 10px;
+      display: none;
+    }
+    #nav {
+      padding: 0 10px;
+      background: #627AAD;
+    }
+    #nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    #nav li {
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+    #nav a {
+      color: #D8DFEA;
+      font-weight: bold;
+      text-decoration: none;
+      line-height: 29px;
+    }
+    #sidebar {
+      float: left;
+      padding: 10px;
+      max-width: 140px;
+    }
+    #sidebar ul, #main ul {
+      list-style-type: none; 
+    }
+    #sidebar a, #main a {
+      color: #333333;
+      line-height: 13px;
+      text-decoration: none;
+    }
+    #main {
+      float: right;
+      width: 500px;
+      padding: 10px;
+      border-left: 1px solid #CCCCCC;
+    }
+    #footer {
+      clear: both;
+      padding: 5px 10px;
+      display: none;
+    }
+    * html #footer {
+      height: 1px;
+    }
+  </style>
+  <script type="text/javascript">
+  
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <div id="header">
+      <h1>
+        My Disk</h1>
+    </div>
+    <div id="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        |
+        <li><a href="/upload">Upload</a></li>
+        |
+        <li><a href="#">...</a></li>
+      </ul>
+    </div>
+    <div id="sidebar">
+      <h1>
+        My Disk</h1>
+      <h2>{{current}}</h2>
+      <ul>{%for f in folders%}
+      <li><a href="/folder{{current}}{{f}}">{{f}}</a></li>{%endfor%}</ul>
+    </div>
+    <div id="main">
+      <h1>
+        Files</h1>
+      <p>
+      </p>
+      <ul>
+        {%for f in files%}
+        <li><a href="/q{{f}}" title="download">{{f}}</a></li>{%endfor%}
+      </ul>
+    </div>
+    <div id="footer">
+      <p>
+        Footer</p>
+    </div>
+  </div>
+
+  <div id="dialog_upload" title="Upload" style="display:none">
+    <iframe src="/upload{{current}}" frameborder="0"></iframe>
+  </div>
+
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.6.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui-1.8.16.custom.min.js') }}"></script>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/ui-lightness/jquery-ui-1.8.16.custom.css') }}">
+<script type="text/javascript">
+  $('#nav > ul > :nth-child(2)').click(function (event) {
+    $('#dialog_upload').dialog({ "width": 360 });
+    event.preventDefault();
+  });
+</script>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<!-- div id="nav">
+  <ul>
+      <a href="/">Home</a>
+    |
+    <a href="/upload">Upload</a>
+    |
+    <a href="#">...</a>
+  </ul>
+</div -->
+<form enctype="multipart/form-data" method="post" action="/upload{{folder}}">
+folder:
+<input type="text" name='target' value="{{folder}}" /><br />
+file:
+<input type="file" name='f' />
+<input type="submit" />
+</form>
+{% if name %}
+<script type="text/javascript">
+  window.parent.location.reload();
+</script>
+{% endif %}
+</html>
